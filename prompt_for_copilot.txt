@@ -1,0 +1,73 @@
+I am finalizing my WAG-AI research paper and want you to act as a professional technical editor.
+
+Workspace: D:\wpp_research
+Available assets:
+- Code: wind_scheduler.py, accuracy_check.py, carbon_aware_benchmark.py, baseline.py, eco_mode.py, compare_results.py
+- Data: T1.csv, emissions.csv
+- Figures: carbon_comparison.png, final_research_comparison.png
+- Key results to preserve: 0.000187 kg CO2 (baseline), 0.000111 kg CO2 (wind-aware), ~40.6% reduction, same Class ID in accuracy check.
+
+Task:
+Review my document and produce a heading-linked insertion checklist that tells me exactly what to add and where.
+
+Output format (strict):
+- Use sections titled exactly:
+  1. Insertions by Heading
+  2. Figure Placement Plan
+  3. Quantization Math Expansion
+  4. Table Plan
+  5. Page-Building Additions
+- Under each section, use checklist items only (`[ ]`).
+- For every checklist item include:
+  - Target heading/subheading name in my paper
+  - Source file + line anchors (e.g., carbon_aware_benchmark.py:16-27)
+  - What to paste (short snippet description, not full file)
+  - Why it strengthens technical credibility
+  - Suggested caption/lead-in sentence
+  - Approximate word count contribution
+
+Content requirements:
+1) Specific Code Snippets:
+- Map strongest snippets from:
+  - wind_scheduler.py decision logic and threshold switch
+  - carbon_aware_benchmark.py run_simulation and 3-strategy experiment
+  - eco_mode.py quantization + compression calculation
+  - baseline.py and eco_mode.py emissions loops
+  - accuracy_check.py argmax parity validation
+- Recommend only 8-12 high-value snippets total.
+
+2) Image Placement:
+- Tell me exact section locations for:
+  - carbon_comparison.png (or final_research_comparison.png if stronger)
+  - Terminal screenshot from accuracy_check.py output
+- For each figure: provide figure number suggestion, caption text, and one paragraph explaining the figure.
+
+3) Mathematical Expansions:
+- Expand INT8 dynamic quantization using:
+  - q = clamp(round(x/s) + z)
+  - x_hat = s * (q - z)
+- Add model-size/compression equation from eco_mode.py:
+  - compression% = ((std_size - eco_size) / std_size) * 100
+- Add scheduler policy equation:
+  - model_t = FP32 if ActivePower_t > 1000 else INT8
+- Add carbon reduction equation:
+  - reduction% = ((E_baseline - E_wind-aware)/E_baseline)*100
+
+4) Tables:
+- Propose exact table placements and schemas for:
+  - T1.csv sample window (24 rows used in experiment)
+  - Strategy comparison table (Always Standard vs Always Eco vs Wind-Aware)
+  - Emissions and percent reduction summary table
+  - Optional hardware/runtime table from emissions.csv metadata
+- Include column names and 3-5 sample rows for each table.
+
+5) Page-Building additions (professional, not fluff):
+- Add algorithm box/pseudocode for wind-aware scheduler
+- Add reproducibility checklist (env, commands, seeds, hardware)
+- Add threats-to-validity paragraph
+- Add short ablation idea (threshold sensitivity)
+
+Important:
+- Be concrete and editorial, not generic.
+- Do not rewrite my whole paper.
+- Return a practical “do-this-next” checklist I can execute section by section.

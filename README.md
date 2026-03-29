@@ -41,18 +41,26 @@ A research-driven project that dynamically optimizes AI model precision based on
 
 ## 🚀 Setup & Execution
 
-1. **Activate Environment:**
+1. **Create Virtual Environment:**
+   ```bash
+   python -m venv .venv
+   ```
+2. **Activate Environment:**
    ```bash
    .venv\Scripts\activate
-2. **Install Dependencies:**
+   ```
+3. **Install Dependencies:**
    ```bash
    pip install -r requirements.txt
-1. **Run the Full Comparision:**
+   ```
+4. **Run the Full Comparision:**
    ```bash
    python carbon_aware_benchmark.py
-1. **Verify Prediction Accuracy:**
+   ```
+5. **Verify Prediction Accuracy:**
    ```bash
    python accuracy_check.py
+   ```
    
 ### 📊 Final Research Findings
 Based on the 24-hour simulation results and hardware monitoring, here are the final findings of the research:
