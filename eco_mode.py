@@ -30,7 +30,7 @@ tracker.start()
 
 print("Running Eco-Mode inference...")
 dummy_input = torch.randn(1, 3, 224, 224)
-for _ in range(5000):
+for _ in range(10000):
     with torch.no_grad():
         output = model_int8(dummy_input)
 
