@@ -64,7 +64,7 @@ def run_benchmark():
         emissions = extract_emissions_from_output(result.stdout)
         
         if not emissions or 'STANDARD' not in emissions:
-            print("⚠️ Failed to extract emissions data from this run")
+            print(" Failed to extract emissions data from this run")
             return None
         
         # Calculate carbon reduction percentage
@@ -81,10 +81,10 @@ def run_benchmark():
         }
     
     except subprocess.TimeoutExpired:
-        print("❌ Benchmark run timed out!")
+        print(" Benchmark run timed out!")
         return None
     except Exception as e:
-        print(f"❌ Error running benchmark: {e}")
+        print(f" Error running benchmark: {e}")
         return None
 
 def main():
@@ -106,9 +106,9 @@ def main():
         if emissions_data:
             results.append(emissions_data)
             successful_runs += 1
-            print(f"✅ Run {run_num} SUCCESS - Reduction: {emissions_data['carbon_reduction_pct']:.2f}%")
+            print(f" Run {run_num} SUCCESS - Reduction: {emissions_data['carbon_reduction_pct']:.2f}%")
         else:
-            print(f"❌ Run {run_num} FAILED")
+            print(f" Run {run_num} FAILED")
         
         # Wait between runs for system stabilization
         if run_num < NUM_RUNS:
@@ -121,7 +121,7 @@ def main():
     print(f"{'='*60}")
     
     if not results:
-        print("❌ No successful runs. Exiting.")
+        print(" No successful runs. Exiting.")
         return
     
     # Convert to DataFrame
@@ -201,7 +201,7 @@ def main():
     ax.legend()
     plt.tight_layout()
     plt.savefig(f'{GRAPH_DIR}01_reduction_over_runs.png', dpi=300)
-    print(f"\n✅ Graph saved: 01_reduction_over_runs.png")
+    print(f"\n Graph saved: 01_reduction_over_runs.png")
     plt.close()
     
     # Graph 2: Emissions Comparison (Box Plot)
@@ -223,7 +223,7 @@ def main():
     ax.grid(True, alpha=0.3, axis='y')
     plt.tight_layout()
     plt.savefig(f'{GRAPH_DIR}02_emissions_boxplot.png', dpi=300)
-    print(f"✅ Graph saved: 02_emissions_boxplot.png")
+    print(f" Graph saved: 02_emissions_boxplot.png")
     plt.close()
     
     # Graph 3: Bar Chart - Mean Emissions with Error Bars
@@ -256,7 +256,7 @@ def main():
     ax.grid(True, alpha=0.3, axis='y')
     plt.tight_layout()
     plt.savefig(f'{GRAPH_DIR}03_emissions_comparison_bars.png', dpi=300)
-    print(f"✅ Graph saved: 03_emissions_comparison_bars.png")
+    print(f" Graph saved: 03_emissions_comparison_bars.png")
     plt.close()
     
     # Graph 4: Distribution Histogram
@@ -342,8 +342,8 @@ def main():
     print(f"\nThis represents:")
     print(f"  - Baseline emissions: {stats['standard_emissions']['mean_kg']:.8f} kg CO₂")
     print(f"  - WAG-AI emissions:   {stats['wind_aware_emissions']['mean_kg']:.8f} kg CO₂")
-    print(f"\n✅ All analysis files saved to current directory")
-    print(f"✅ All graphs saved to: {GRAPH_DIR}")
+    print(f"\n All analysis files saved to current directory")
+    print(f" All graphs saved to: {GRAPH_DIR}")
     print(f"\nFiles created:")
     print(f"  - {OUTPUT_CSV}")
     print(f"  - {OUTPUT_JSON}")

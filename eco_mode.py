@@ -22,7 +22,7 @@ eco_size = os.path.getsize("eco_model.pt") / 1e6
 
 print(f"Standard Size: {std_size:.2f} MB")
 print(f"Eco-Mode Size: {eco_size:.2f} MB")
-print(f"Compression: {((std_size - eco_size) / std_size) * 100:.1f}% smaller!")
+print(f"Compression: {((std_size - eco_size) / std_size) * 100:.1f}% smaller")
 
 # 4. Measure Eco-Mode Emissions
 tracker = EmissionsTracker()

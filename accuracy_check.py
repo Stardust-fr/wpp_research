@@ -22,7 +22,7 @@ print(f"Standard Model Prediction (Class ID): {class_std}")
 print(f"Eco-Mode Model Prediction (Class ID): {class_eco}")
 
 if class_std == class_eco:
-    print("✅ SUCCESS: Both models made the SAME prediction.")
-    print("Your carbon savings came with ZERO loss in decision accuracy.")
+    print("SUCCESS: Both models made the SAME prediction.")
+    print("Carbon savings came with ZERO loss in decision accuracy.")
 else:
-    print("⚠️ NOTE: Models had a slight variance in prediction.")
+    print("Models had a slight variance in prediction.")

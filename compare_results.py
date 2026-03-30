@@ -25,4 +25,4 @@ for bar in bars:
     plt.text(bar.get_x() + bar.get_width()/2, yval, f'{yval:.6f}', va='bottom', ha='center')
 
 plt.savefig('carbon_comparison.png')
-print("Graph saved as carbon_comparison.png! Check your folder.")
+print("Graph saved as carbon_comparison.png")
