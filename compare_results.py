@@ -1,11 +1,22 @@
 import matplotlib.pyplot as plt
 import pandas as pd
+import json
 
-# These are the results from your recent runs (approximate values)
-# You can update these with your exact 'Total Carbon' numbers
+# Load benchmark data from recent runs
+with open('benchmark_summary.json', 'r') as f:
+    benchmark_data = json.load(f)
+
+# Load benchmark CSV to compute eco-mode mean
+benchmark_df = pd.read_csv('benchmark_results.csv')
+eco_mean = benchmark_df['eco_emissions'].mean()
+
+# Extract mean emissions values
+standard_mean = benchmark_data['standard_emissions']['mean_kg']
+wind_aware_mean = benchmark_data['wind_aware_emissions']['mean_kg']
+
 data = {
     'Strategy': ['Always Standard', 'Always Eco', 'Wind-Aware (Ours)'],
-    'Carbon (kg CO2)': [0.000187, 0.000185, 0.000111] 
+    'Carbon (kg CO2)': [standard_mean, eco_mean, wind_aware_mean] 
 }
 
 df = pd.DataFrame(data)

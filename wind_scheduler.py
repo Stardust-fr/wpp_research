@@ -15,7 +15,6 @@ model_eco = torch.quantization.quantize_dynamic(
 )
 
 # 2. LOAD AND CLEAN KAGGLE DATA
-# Ensure 'Turbine_Data.csv' is in your D:\wpp_research folder
 df = pd.read_csv("T1.csv")
 
 # Remove rows where ActivePower is missing so we don't get 'nan'

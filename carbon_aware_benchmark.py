@@ -18,7 +18,7 @@ model_eco = torch.quantization.quantize_dynamic(
 # Load Kaggle SCADA Data
 df = pd.read_csv("T1.csv").dropna(subset=['ActivePower'])
 wind_data = df['ActivePower'].iloc[100:124].values
-THRESHOLD = 1000.0
+THRESHOLD = 500.0  # Realistic threshold for this dataset (wind range: 9-873 kW)
 
 def run_simulation(mode_type):
     # --- THERMAL NORMALIZATION ---
@@ -36,20 +36,18 @@ def run_simulation(mode_type):
 
     tracker.start()
     for power in wind_data:
-        # Decision Logic & Workload Shedding
+        # Decision Logic (Fair Comparison - Same Workload, Different Models)
+        batch_size = 16  # CONSTANT batch size for all strategies
+        
         if mode_type == "STANDARD":
             current_model = model_std
-            batch_size = 16  # Full Workload
         elif mode_type == "ECO":
             current_model = model_eco
-            batch_size = 16  # Full Workload but quantized
-        else: # WIND-AWARE STRATEGY
+        else: # WIND-AWARE STRATEGY - Only intelligent model switching (no workload shedding)
             if power > THRESHOLD:
                 current_model = model_std
-                batch_size = 16 # Surplus Power: Process Max Data
             else:
                 current_model = model_eco
-                batch_size = 8  # POWER SAVING: Drop batch size (Workload Shedding)
         
         with torch.no_grad():
             batch = torch.randn(batch_size, 3, 224, 224)
